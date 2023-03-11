@@ -148,8 +148,7 @@ def main_menu():
                        "3. Найти запись\n"
                        "4. Изменить запись\n"
                        "5. Удлить запись\n"
-                       "6. Экспорт/Импорт\n"
-                       "7. Выход\n")
+                       "6. Выход\n")
         match answer:
             case "1":
                 show_all()
@@ -164,8 +163,6 @@ def main_menu():
             case "5":
                 del_contact()
             case "6":
-                export_import_menu()
-            case "7":
                 play = False
             case _:
                 print("Попробуйте ещё раз!\n")
@@ -198,43 +195,5 @@ def edit_menu():
                     print("Данные не распознаны, повторите ввод.")
     else:
         print("Некорректные данные!")
-
-
-def export_bd(name):
-    # Сохранение данных в новый файл
-
-    symbol = "\n"
-
-    if not path.exists(name):
-        with open(f"{name}.txt", "w", encoding="utf-8") as f:
-            f.write(f'{symbol.join(all_data)}\n')
-
-
-def ipmort_bd(name):
-    global file_base
-    if path.exists(name):
-        file_base = name
-        read_records()
-
-
-def export_import_menu():
-    # Меню экспорта/импорта
-
-    while True:
-        print("\nМеню Экспорта/Импорта:")
-        move = input("1. Импорт\n"
-                     "2. Экспорт\n"
-                     "3. Выход\n")
-
-        match move:
-            case "1":
-                ipmort_bd(input("Введите название файла: "))
-            case "2":
-                export_bd(input("Введите название файла: "))
-            case "3":
-                return 0
-            case _:
-                print("Данные не распознаны, повторите ввод.")
-
 
 main_menu()
